@@ -1,5 +1,6 @@
 from flask import Flask, redirect, url_for, request
 from serpapi import GoogleSearch
+from fetchReviews import fetchReviews
 
 app = Flask(__name__)
 
@@ -44,13 +45,11 @@ def getReviews():
         }
         search = GoogleSearch(params)
         results = search.get_dict()
-        # print(results)
         first_result = results["place_results"] # Should contain just one result unless this is an SF chain, in which case we just pick the first.
-        print(first_result)
+        # print(first_result)
         restaurantId = first_result["data_id"] # this will be used to query for reviews
-        # organic_results = ["2" for x in range(5)]
-        # return redirect(url_for('reviews', name=user, results=organic_results))
-        return "<p>Reviews for business: " + business + " and id - " + restaurantId + "</br>" + str(results) + "</p>"        
+        return fetchReviews(restaurantId)
+        # return "<p>Reviews for business: " + business + " and id - " + restaurantId + "</br>" + str(results) + "</p>"
     else:
         # log error
         return
