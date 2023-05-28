@@ -11,3 +11,7 @@ If you run into OpenSSL issues, try:
 pip3 install urllib3==1.26.6
 
 pip3 install openai
+
+Before running, set environment variable:
+
+api_key=<keyhere>

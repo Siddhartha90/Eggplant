@@ -1,6 +1,9 @@
 import openai
-openai.api_key = "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" # dont mind me hardcoding my key
+import os
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
+
+keyword = "gluten free"
 
 def sentimentAnalysis():
 	reviews2 = """0: Above average vegan food, super delicious but it could have been better with meat in the dishes and animal products. The salad was tasty. I got pasta and the sauce was watery. I really liked the desert with honey and pear toffee. It was super good given that it is vegan. Overall I am not a fan of vegan food, though I do see it’s economic value, but this was surprisingly super good.
@@ -14,14 +17,21 @@ def sentimentAnalysis():
 8: If I could eat here every day I would. Highly recommend. I am not vegan and this food would pass an old school Italian grandma taste test! Came back 2 nights in a row. The food is DELICIOUS and I love the ambiance. Service is quick and excellent. Heads up you can eat upstairs and downstairs. The restrooms are gender neutral just in case that's a concern for you and of course parking is just as difficult as any other part of the city.
 9: A really lovely place to get all plant based Italian food. The pasta was delicious and had a good bite, and the mushrooms were fragrant. The parking garage next door was convenient, though not free, and the wait staff was a little stiff and indifferent, but timely and not unfriendly. A solid place to go for good vegan pasta.
 """
-	response = openai.Completion.create(
-	    engine="text-davinci-002",
-	    prompt=f"You read a review that said ```{reviews2}```, the sentiment of the 10 reviews in comma:",
-	    temperature=0.5,
-	    top_p=1,
-        frequency_penalty=0,
-        presence_penalty=0,
-	)
+	system_msg = "You are an assistant that only returns valid JSON, with no pretext or posttext. "
+
+	# Define the user message
+	user_json_msg = f"You are answering questions on the following reviews```{reviews2}``` How many reviews are there? Reply with a JSON array with no pretext or posttext"
+	assistant_json_msg = f"[10]"
+	user_msg = f"Given a list of keywords [gluten free, vegan, <insert 10 more> ] Reply with a JSON array of JSON arrays with no pretext or posttext. Each array should be all keywords that apply to the given result. Use lateral thinking, for example, if it's implied all they sell is steak, that's probably gluten free"
+	response = openai.ChatCompletion.create(model="gpt-4",
+											temperature=0,
+	                                        messages=[{"role": "system", "content": system_msg},
+	                                         {"role": "user", "content": user_json_msg},
+	                                         {"role": "assistant", "content": assistant_json_msg},
+	                                         {"role": "user", "content": user_msg},
+	                                         ])
+
+
 
 	print(response)
 
