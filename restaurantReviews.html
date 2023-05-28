@@ -9,7 +9,7 @@
             font-family: 'Montserrat', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #ee9ca7, #ffdde1);
+            background: linear-gradient(to bottom, #DDB0FF, #A579FF);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,6 +60,57 @@
             line-height: 1.5;
             color: #666;
         }
+        .input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-container span {
+  margin: 10px;
+}
+
+.input-container input[type="text"] {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.input-container input[type="text"]:focus {
+  outline: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.input-container input[type="text"]::placeholder {
+  color: #999;
+}
+input[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background: linear-gradient(to bottom, #DDB0FF, #A579FF);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background: linear-gradient(to bottom, #D09BFF, #8E5AFF);
+}
+
+input[type="submit"]:focus {
+  outline: none;
+}
+
+
+
+
+
     </style>
 
     <title>HTML JavaScript output on same page</title>
@@ -75,22 +126,26 @@
     <div class="container">
 
         <div class="review">
-            <a href="https://www.google.com" style="color: #f97b73; font-size:0.96em; position:absolute; margin-left:137px; margin-top:7px;">See Menu</a>
-            <h2 style="float:center;">Restaurant</h2>
-            <span><input type = "text" name = "business" /></span>
-            <span><input type = "text" name = "keyword" /></span>
+            <!--<a href="https://www.google.com" style="color: #f97b73; font-size:0.96em; position:absolute; margin-left:137px; margin-top:7px;">See Menu</a>-->
+            <h2 style="float:center;">Find Restaurant</h2>
+            <div class="input-container">
+                <span><input type="text" name="business" placeholder="Business" /></span>
+                <span><input type="text" name="keyword" placeholder="Keyword" /></span>
+              </div>
+              
             
             <p><span id = "display_message" style="color: #64b748;"></span> </p>
 
-            <p><input type = "submit" onclick="showMessage()" value = "submit" /></p>
+            <p><input type = "submit" onclick="showMessage()" value = "Submit" /></p>
             <div style="clear:both;"></div>
             <p class="criteria" style="margin-bottom:-3px;">
                 <span>Aubergine Index: 🍆🍆🍆</span>
             </p>
+            <a href="./table.html" style="color: #A579FF; font-size:0.91em; position:absolute; margin-left:131px; margin-top:-20px;">How It Works</a>
             <div style="display:flex; flex-direction:column; align-items:center;">
             <p style="font-size:0.88em; width:70%;">(This is based on the reviews of the restaurant)</p>
             </div>
-            <div class="criteria" style="margin-top:15px;">
+            <div class="criteria" style="margin-top:5px;">
                 <span style="">Dietary Preferences:</span>
                 <ul style="margin-top:10px;">
                     <li>Vegetarian: <span style="color: #64b748;">Positive</span></li>
@@ -102,7 +157,7 @@
         
         <div class="description" style="text-align:center;">
             <p>
-                (This could be a short description...)
+            
             </p>
         </div>
     </div
