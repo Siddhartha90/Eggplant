@@ -9,3 +9,5 @@ python3 -m flask --app app run
 
 If you run into OpenSSL issues, try:
 pip3 install urllib3==1.26.6
+
+pip3 install openai
