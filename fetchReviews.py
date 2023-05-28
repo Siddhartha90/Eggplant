@@ -67,6 +67,6 @@ def fetchReviews(restaurantId, numPages:10, keyword):
             reviews_output = reviews_output + review + "\n"
             reviewsAccountedFor = reviewsAccountedFor + 1
 
-    sentimentJson = sentimentAnalysis()
+    sentimentJson = sentimentAnalysis(reviews_output, keyword)
     result = {'sentiment': sentimentJson, reviewsAccountedFor: reviewsAccountedFor}
     return result

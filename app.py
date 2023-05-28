@@ -48,13 +48,22 @@ def getReviews():
         results = search.get_dict()
         first_result = results["place_results"] # Should contain just one result unless this is an SF chain, in which case we just pick the first.
         restaurantId = first_result["data_id"] # this will be used to query for reviews
-        result = fetchReviews(restaurantId, 1, keyword)
+        result = fetchReviews(restaurantId, 5, keyword)
         sentimentArray = result["sentiment"]
-        reason = sentimentArray["explanation"]
+        print(sentimentArray)
+        if "reasoning" in sentimentArray:
+            reason = sentimentArray["reasoning"]
+        if "reasons" in sentimentArray:
+            reason = sentimentArray["reasons"]
+        if "reason" in sentimentArray:
+            reason = sentimentArray["reason"]
+        if "explanation" in sentimentArray:
+            reason = sentimentArray["explanation"]
         sentiment = sentimentArray["sentiment"]
-        print(reason)
-        print(sentiment)
-        return render_template('result.html', keyword=keyword, message=sentiment, reason = reason, restaurant="test")
+        if reason is not None:
+            return render_template('result.html', keyword=keyword, message=sentiment, reason = reason)
+        else:
+            return render_template('result.html', keyword=keyword, message=sentiment)
     else:
         # log error
         return

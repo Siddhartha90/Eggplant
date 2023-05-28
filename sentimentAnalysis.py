@@ -3,15 +3,15 @@ import os, json
 openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 
-def sentimentAnalysis():
-	reviews = """
-	0: Loved it!! Awesome service. The food was so good that I didn't have time to take too many pictures. The service was impeccable and very attentive. It was overall a very din experience. Also you need to try the Greek coffee. I loved it so much that ended up having two cups.
-1: Stunning restaurant, delicious food, great wine selection and incredible staff. I had dinner with some friends a few months ago. Even though we had a reservation it took some time to get us seated and the waiters more than made it up to us by offering outstanding service and a complimentary desert. Highly recommend. Perfect date night spot.
-"""
+def sentimentAnalysis(reviews, keyword):
+# 	reviews = """
+# 	0: Loved it!! Awesome service. The food was so good that I didn't have time to take too many pictures. The service was impeccable and very attentive. It was overall a very din experience. Also you need to try the Greek coffee. I loved it so much that ended up having two cups.
+# 1: Stunning restaurant, delicious food, great wine selection and incredible staff. I had dinner with some friends a few months ago. Even though we had a reservation it took some time to get us seated and the waiters more than made it up to us by offering outstanding service and a complimentary desert. Highly recommend. Perfect date night spot.
+# """
 	print(reviews)
 	system_msg = "You are an assistant that only returns valid JSON, with no pretext or posttext. "
 
-	keyword = "gluten free food"
+	# keyword = "gluten free food"
 	# Define the user message
 	user_json_msg = f"You are answering questions on the following reviews```{reviews}```"
 	assistant_json_msg = f"[10]"
