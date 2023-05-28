@@ -14,4 +14,4 @@ pip3 install openai
 
 Before running, set environment variable:
 
-api_key=<keyhere>
+export api_key=<keyhere>
