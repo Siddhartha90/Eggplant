@@ -1,8 +1,8 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request
 from serpapi import GoogleSearch
 from fetchReviews import fetchReviews
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='')
 
 @app.route("/")
 def hello_world():
@@ -36,6 +36,7 @@ def reviews(name, results):
 def getReviews():
     if request.method == 'POST':
         business = request.form['business']
+        keyword = request.form['keyword']
         params = {
           "engine": "google_maps",
           "q": business,
@@ -47,8 +48,13 @@ def getReviews():
         results = search.get_dict()
         first_result = results["place_results"] # Should contain just one result unless this is an SF chain, in which case we just pick the first.
         restaurantId = first_result["data_id"] # this will be used to query for reviews
-        return fetchReviews(restaurantId, 6)
-        # return "<p>Reviews for business: " + business + " and id - " + restaurantId + "</br>" + str(results) + "</p>"
+        result = fetchReviews(restaurantId, 1, keyword)
+        sentimentArray = result["sentiment"]
+        reason = sentimentArray["explanation"]
+        sentiment = sentimentArray["sentiment"]
+        print(reason)
+        print(sentiment)
+        return render_template('result.html', keyword=keyword, message=sentiment, reason = reason, restaurant="test")
     else:
         # log error
         return

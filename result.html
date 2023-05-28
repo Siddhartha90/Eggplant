@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Review Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #ee9ca7, #ffdde1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+        .review {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .criteria {
+            font-weight: bold;
+            color: #555;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 16px;
+        }
+        .eggplant {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .description {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.5;
+            color: #666;
+        }
+    </style>
+
+    <title>HTML JavaScript output on same page</title>
+    <script type="text/JavaScript">
+        function showMessage(){
+            var message = document.getElementById("message").value;
+            display_message.innerHTML= message;
+        }
+    </script>
+</head>
+<body>
+    <form action = "http://127.0.0.1:5000/getReviews" method = "post">
+    <div class="container">
+
+        <div class="review">
+            <a href="https://www.google.com" style="color: #f97b73; font-size:0.96em; position:absolute; margin-left:137px; margin-top:7px;">See Menu</a>
+            <h2 style="float:center;">{{restaurant}}</h2>
+            
+            <p><span id = "display_message" style="color: #64b748;">{{message}}</span> </p>
+
+            <div style="clear:both;"></div>
+            <p class="criteria" style="margin-bottom:-3px;">
+                <span>Aubergine Index: 🍆🍆🍆</span>
+            </p>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+            <p style="font-size:0.88em; width:70%;">(This is based on the carbon emissions of the menu items)</p>
+            </div>
+            <div class="criteria" style="margin-top:15px;">
+                <span style="">Dietary Preferences:</span>
+                <ul style="margin-top:10px;">
+                    <li>{{keyword}}: <span></span></li>
+                    <li>Reasoning: <span style="color: #5489b7;">{{reason}}</span></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="description" style="text-align:center;">
+            <p>
+                (This could be a short description...)
+            </p>
+        </div>
+    </div

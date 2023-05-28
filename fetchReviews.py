@@ -4,7 +4,7 @@ import ast
 from sentimentAnalysis import sentimentAnalysis
 
 # Fetches only the first 10 reviews.
-def fetchReviews(restaurantId):
+def fetchReviews(restaurantId, keyword):
     print("here - " + restaurantId)
     params = {
       "engine": "google_maps_reviews",
@@ -28,12 +28,12 @@ def fetchReviews(restaurantId):
         # print(restaurant["snippet"])
         i = i + 1
 
-    sentiment = sentimentAnalysis(reviews_output)
+    sentiment = sentimentAnalysis(reviews_output, keyword)
     return "<p> Sentiment based on" + i + " reviews: " + sentiment + "</p>"
     # return "<iframe src=\"" + embedded_url + "\" title=\"description\"></iframe>"
 
 # Fetches given number of reviews pages, each page has 10
-def fetchReviews(restaurantId, numPages:10):       
+def fetchReviews(restaurantId, numPages:10, keyword):       
     results = ""
     reviewsAccountedFor = 0
     reviews_output = ""
@@ -67,5 +67,6 @@ def fetchReviews(restaurantId, numPages:10):
             reviews_output = reviews_output + review + "\n"
             reviewsAccountedFor = reviewsAccountedFor + 1
 
-    sentiment = sentimentAnalysis(reviews_output)
-    return "<p> Sentiment based on " + str(reviewsAccountedFor) + " reviews: " + sentiment + "</p>"
+    sentimentJson = sentimentAnalysis()
+    result = {'sentiment': sentimentJson, reviewsAccountedFor: reviewsAccountedFor}
+    return result
