@@ -17,6 +17,7 @@ def sentimentAnalysis(reviews):
 # 8: If I could eat here every day I would. Highly recommend. I am not vegan and this food would pass an old school Italian grandma taste test! Came back 2 nights in a row. The food is DELICIOUS and I love the ambiance. Service is quick and excellent. Heads up you can eat upstairs and downstairs. The restrooms are gender neutral just in case that's a concern for you and of course parking is just as difficult as any other part of the city.
 # 9: A really lovely place to get all plant based Italian food. The pasta was delicious and had a good bite, and the mushrooms were fragrant. The parking garage next door was convenient, though not free, and the wait staff was a little stiff and indifferent, but timely and not unfriendly. A solid place to go for good vegan pasta.
 # """
+	print(reviews)
 	system_msg = "You are an assistant that only returns valid JSON, with no pretext or posttext. "
 
 	# Define the user message

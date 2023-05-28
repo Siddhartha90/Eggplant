@@ -46,9 +46,8 @@ def getReviews():
         search = GoogleSearch(params)
         results = search.get_dict()
         first_result = results["place_results"] # Should contain just one result unless this is an SF chain, in which case we just pick the first.
-        # print(first_result)
         restaurantId = first_result["data_id"] # this will be used to query for reviews
-        return fetchReviews(restaurantId)
+        return fetchReviews(restaurantId, 6)
         # return "<p>Reviews for business: " + business + " and id - " + restaurantId + "</br>" + str(results) + "</p>"
     else:
         # log error
